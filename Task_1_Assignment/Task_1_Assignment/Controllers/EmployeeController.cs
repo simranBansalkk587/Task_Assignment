@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Task_1_Assignment.Data;
@@ -80,7 +81,28 @@ namespace Task_1_Assignment.Controllers
       _context.SaveChanges();
 
     }
+  //  [HttpPost]
+  //  public IActionResult Upload(Employee employee)
+  //  {
+  //    var files = HttpContext.Request.Form.Files;
+  //    if (files.Count > 0)
+  //    {
+  //      byte[] p1 = null;
+  //      using (var fs1 = files[0].OpenReadStream())
+  //      {
+  //        using (var ms1 = new MemoryStream())
+  //        {
+  //          fs1.CopyTo(ms1);
+  //          p1 = ms1.ToArray();
+  //        }
+  //      }
+  //      employee.Picture = p1;
+  //    }
+  //    _context.SaveChanges();
+  //    re
 
 
   }
+
+
 }

@@ -12,7 +12,6 @@ export class EmployeeService {
   getAllEmployees():Observable<any>
   {
     return this.httpClient.get<any>("https://localhost:44303/api/employee");
-   
   
   }
   saveEmployee(newEmployee:Employee):Observable<Employee>
