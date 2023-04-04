@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import{HttpClient}from '@angular/common/http';
+import{HttpClient, HttpHeaders}from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Employee } from './employee';
 
@@ -27,7 +27,25 @@ export class EmployeeService {
   }
   deleteEmployee(id:number):Observable<any>
   {
-    return this.httpClient.delete<any>("https://localhost:44303/api/employee?id"+id);
+    return this.httpClient.delete<any>("https://localhost:44303/api/employee?id="+id);
 
   }
+  saveImage(base64code:Employee)
+  {
+    // / /set the headers for the POST request
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json');
+    // create a data object to send to the server
+    const data = {
+      myimage: base64code
+    };
+    // send the POST request to the server-side endpoint
+    this.httpClient.post('https://localhost:44303/api/employee', data).subscribe(response => {
+      console.log('Image saved successfully', response);
+    }, error => {
+      console.error('Error saving image', error);
+    });
+  }
+  
+
 }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -7,12 +8,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Task_1_Assignment.Data;
+using Task_1_Assignment.Repository;
+using Task_1_Assignment.Repository.IRepository;
 
 namespace Task_1_Assignment
 {
@@ -30,14 +35,41 @@ namespace Task_1_Assignment
         {
             string cs = Configuration.GetConnectionString("constr");
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(cs));
+       services.AddScoped<IUserRepository, UserRepository>();
 
 
-            services.AddControllers();
+
+      services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Task_1_Assignment", Version = "v1" });
             });
-            services.AddCors(options =>
+      // //jwt
+      var appsettingSection = Configuration.GetSection("AppSettings");
+      services.Configure<AppSettings>(appsettingSection);
+      var appsetting = appsettingSection.Get<AppSettings>();
+      var key = Encoding.ASCII.GetBytes(appsetting.Secret);
+      services.AddAuthentication(u =>
+      {
+        u.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        u.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+      }).AddJwtBearer(u =>
+      {
+        u.RequireHttpsMetadata = false;
+        u.SaveToken = true;
+        u.TokenValidationParameters = new TokenValidationParameters()
+        {
+          ValidateIssuerSigningKey = true,
+          IssuerSigningKey = new SymmetricSecurityKey(key),
+          ValidateIssuer = false,
+          ValidateAudience = false
+
+        };
+
+      });
+
+      services.AddCors(options =>
             {
                 options.AddPolicy(name: "MyPolicy",
                   builder =>

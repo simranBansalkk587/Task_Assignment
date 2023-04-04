@@ -83,7 +83,6 @@ D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\bin\Debug\
 D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\bin\Debug\net5.0\Microsoft.OpenApi.dll
-D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\bin\Debug\net5.0\Newtonsoft.Json.dll
 D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -119,4 +118,6 @@ D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\obj\Debug\
 D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\obj\Debug\net5.0\ref\Task_1_Assignment.dll
 D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\obj\Debug\net5.0\Task_1_Assignment.pdb
 D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\obj\Debug\net5.0\Task_1_Assignment.genruntimeconfig.cache
+D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\bin\Debug\net5.0\AutoMapper.dll
 D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\obj\Debug\net5.0\Task_1_Assignment.csproj.AssemblyReference.cache
+D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

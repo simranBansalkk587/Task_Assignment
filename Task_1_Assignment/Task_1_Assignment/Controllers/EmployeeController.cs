@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,7 +13,9 @@ namespace Task_1_Assignment.Controllers
 {
     [Route("api/employee")]
     [ApiController]
-    public class EmployeeController : ControllerBase
+    [Authorize]
+
+  public class EmployeeController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
         public EmployeeController(ApplicationDbContext context)
@@ -36,9 +39,23 @@ namespace Task_1_Assignment.Controllers
         [HttpPost]
         public IActionResult SaveEmployee([FromBody]Employee employee)
         {   
-            if(employee !=null && ModelState.IsValid)
-            {
-                _context.Employees.Add(employee);
+          if(employee !=null && ModelState.IsValid)
+          {
+        //var files = HttpContext.Request.Form.Files;
+        //if (files.Count > 0)
+        //{
+        //  byte[] p1 = null;
+        //  using (var fs1 = files[0].OpenReadStream())
+        //  {
+        //    using (var ms1 = new MemoryStream())
+        //    {
+        //      fs1.CopyTo(ms1);
+        //      p1 = ms1.ToArray();
+        //    }
+        //  }
+          //employee.Picture = p1;
+        
+        _context.Employees.Add(employee);
                 _context.SaveChanges();
                 return Ok();
             }

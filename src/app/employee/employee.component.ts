@@ -1,8 +1,10 @@
+import Swal from 'sweetalert2';
 import { Observable, Subscriber } from 'rxjs';
 import { EmployeeService } from './../employee.service';
 import { Employee } from './../employee';
 import { Component } from '@angular/core';
-import { HttpEventType } from '@angular/common/http';
+import { HttpEventType, HttpHeaders,HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-employee',
@@ -14,14 +16,14 @@ export class EmployeeComponent {
   employeeList:Employee[]=[];
   newEmployee:Employee=new Employee();
   editEmployee:Employee=new Employee();
-  myimage!: Observable<any>;
+  picture!: Observable<any>;
   base64code!: any
   onChange = ($event: Event) => {
-    debugger;
     const target = $event.target as HTMLInputElement;
     const file: File = (target.files as FileList)[0];
     console.log(file);
     this.convertToBase64(file)
+    
   };
   convertToBase64(file: File){
 
@@ -30,8 +32,11 @@ export class EmployeeComponent {
     });
     observable.subscribe((d) => {
       console.log(d)
-      this.myimage = d
+      this.picture = d
+      
       this.base64code = d
+     this.newEmployee.picture=d
+     this.editEmployee.picture=d
     })
   }
   readFile(file: File, subscriber: Subscriber<any>) {
@@ -56,6 +61,7 @@ export class EmployeeComponent {
   ngOnInit()
   {
     this.getAll();
+   // this.convertToBase64();
   }
   getAll()
   {
@@ -70,17 +76,22 @@ export class EmployeeComponent {
     );
   }
   SaveClick()
-  {debugger
+  {
     if(this.newEmployee.name=="")
     {
       alert('Name Empty !!');
       return;
     }
+
     //alert(this.newEmployee.name)
     this.employeeservice.saveEmployee(this.newEmployee).subscribe(
       (respone)=>{
        alert('data saved')
        this.getAll();
+      // this.convertToBase64();
+     // this.onChange();
+    // this.convertToBase64();
+    this.base64code=this.newEmployee.picture="",  
        this.newEmployee.name="",
        this.newEmployee.address="",
        this.newEmployee.salary=0,
@@ -104,21 +115,62 @@ export class EmployeeComponent {
          console.log(error);
       }
       ) 
+
   }
-  DeleteClick(id:number)
+  
+  DeleteClick(id:number) 
   {
-    let ans=window.confirm('want to delete data...');
-    if(!ans)return;
-    this.employeeservice.deleteEmployee(id).subscribe(
-      (response)=>{
-        this.getAll();
-      },
-      (error)=>{
-        console.log(error);
-      }
-    )
-  }
+    Swal.fire({  
+      
+      title: 'Are you sure want to remove?',  
+      text: 'You will not be able to recover this file!',  
+      icon: 'warning',  
+      showCancelButton: true,  
+      confirmButtonText: 'Yes, delete it!',  
+      cancelButtonText: 'No, keep it'  
+    }).then((result) => {  
+      if (result.value) {  
+        this.employeeservice.deleteEmployee(id).subscribe(
+      
+          (response)=>{
+            
+         
+          this.getAll();
+        }
+        )
+        Swal.fire(  
+          'Deleted!',  
+          'Your imaginary file has been deleted.',  
+          'success'  
+        )  
+      } else if (result.dismiss === Swal.DismissReason.cancel) {  
+        Swal.fire(  
+          'Cancelled',  
+          'Your imaginary file is safe :)',  
+          'error'  
+        )  
+      }  
+    })  
+   
+  }  
 }
+
+  // saveImage()
+  // {
+  //   this.employeeservice.saveImage(this.newEmployee).subscribe(
+  //   ()=>{},
+  //   ()=>{}
+  //   )
+  // }
+
+  
+  
+ 
+
+
+
+  
+
 // const formData = new FormData();
 // for (const key of Object.keys(this.picture.value)) {
 //   const value = this.profileForm.value[key];
@@ -145,7 +197,3 @@ export class EmployeeComponent {
 //         // picture: file,
 //       });
     
-  
- 
- 
-
