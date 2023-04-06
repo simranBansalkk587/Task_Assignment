@@ -119,5 +119,5 @@ D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\obj\Debug\
 D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\obj\Debug\net5.0\Task_1_Assignment.pdb
 D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\obj\Debug\net5.0\Task_1_Assignment.genruntimeconfig.cache
 D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\bin\Debug\net5.0\AutoMapper.dll
-D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\obj\Debug\net5.0\Task_1_Assignment.csproj.AssemblyReference.cache
 D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Task_assignment\Task_1_Angular\Task_1_Assignment\Task_1_Assignment\obj\Debug\net5.0\Task_1_Assignment.csproj.AssemblyReference.cache

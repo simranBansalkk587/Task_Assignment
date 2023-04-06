@@ -2,7 +2,7 @@ import Swal from 'sweetalert2';
 import { Observable, Subscriber } from 'rxjs';
 import { EmployeeService } from './../employee.service';
 import { Employee } from './../employee';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpEventType, HttpHeaders,HttpClient } from '@angular/common/http';
 
 
@@ -11,7 +11,7 @@ import { HttpEventType, HttpHeaders,HttpClient } from '@angular/common/http';
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.scss']
 })
-export class EmployeeComponent {
+export class EmployeeComponent implements OnInit {
   
   employeeList:Employee[]=[];
   newEmployee:Employee=new Employee();
@@ -57,6 +57,7 @@ export class EmployeeComponent {
   
   
 
+  
   constructor(private employeeservice:EmployeeService){}
   ngOnInit()
   {

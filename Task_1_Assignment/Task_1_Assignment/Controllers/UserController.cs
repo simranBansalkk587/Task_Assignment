@@ -23,6 +23,7 @@ namespace Task_1_Assignment.Controllers
     [HttpPost("register")]
     public IActionResult Register([FromBody] User user)
     {
+      
       if (ModelState.IsValid)
       {
         var IsUniqueuser = _userRepository.IsUniqueUser(user.UserName);
@@ -55,11 +56,12 @@ namespace Task_1_Assignment.Controllers
       }
     }
     [HttpPost("authenticate")]
+
     public IActionResult Authenticate([FromBody] UserVM userVM)
     {
       var user = _userRepository.Authenticate(userVM.UserName, HashPassword(userVM.Password));
       if (user == null) return BadRequest("Wrong User/Password");
-      return Ok(user);
+      return Ok(user.Token);
     }
   }
 }

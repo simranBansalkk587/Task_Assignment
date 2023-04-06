@@ -11,6 +11,18 @@ export class EmployeeService {
   constructor(private httpClient:HttpClient) { }
   getAllEmployees():Observable<any>
   {
+   // jwt
+    // var currentuser={token:""};
+    // var headers=new HttpHeaders();
+    // headers=headers.set("Authorization","Bearer ");
+    // var CurrentUserSession=sessionStorage.getItem("currentuser");
+    // if(CurrentUserSession !=null)
+    // {
+    //   currentuser=JSON.parse(CurrentUserSession);
+    //   headers=headers.set("Authorization","Bearer "+ currentuser.token); 
+
+    // }
+    
     return this.httpClient.get<any>("https://localhost:44303/api/employee");
   
   }

@@ -45,7 +45,7 @@ namespace Task_1_Assignment.Repository
       };
       var token = tokenHandler.CreateToken(tokenDescritor);
       userInDb.Token = tokenHandler.WriteToken(token);
-      //userInDb.Password = "";
+      userInDb.Password = "";
       return userInDb;
 
     }
